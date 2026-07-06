@@ -1,99 +1,176 @@
-<div class="d-flex">
+<div class="app-shell">
 
-    <!-- Sidebar -->
+  <!-- Desktop Sidebar -->
+  <aside class="sidebar d-none d-lg-flex flex-column">
 
-    <div class="bg-dark text-white vh-100 p-3" style="width:250px;">
-
-        <div class="text-center mb-4">
-
-    <i class="bi bi-kanban-fill display-4 text-info"></i>
-
-    <h4 class="mt-2">
-        PMS
-    </h4>
-
-    <small class="text-secondary">
-        Project Management System
-    </small>
-
-</div>
-
-        <ul class="nav flex-column">
-
-            <li class="nav-item mb-2"><a
-  routerLink="/dashboard"
-  routerLinkActive="active"
-  [routerLinkActiveOptions]="{ exact: true }"
-  class="nav-link text-white">
-                
-                    <i class="bi bi-speedometer2"></i>
-                    Dashboard
-                </a>
-            </li>
-
-            <li class="nav-item mb-2">
-                <a
-  routerLink="/user"
-  routerLinkActive="active"
-  class="nav-link text-white">
-                    <i class="bi bi-people-fill"></i>
-                    Users
-                </a>
-            </li>
-
-            <li class="nav-item mb-2">
-                <a
-  routerLink="/project"
-  routerLinkActive="active"
-  class="nav-link text-white">
-                    <i class="bi bi-folder-fill"></i>
-                    Projects
-                </a>
-            </li>
-
-            <li class="nav-item mb-2"><a routerLink="/task" class="nav-link text-white"><a
-  routerLink="/task"
-  routerLinkActive="active"
-  class="nav-link text-white"></a>
-                
-                    <i class="bi bi-list-task"></i>
-                    Tasks
-                </a>
-            </li>
-
-            <li class="nav-item mt-5">
-                <a routerLink="/" class="nav-link text-danger">
-                    <i class="bi bi-box-arrow-right"></i>
-                    Logout
-                </a>
-            </li>
-
-        </ul>
-
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <i class="bi bi-kanban-fill"></i>
+      </div>
+      <div class="brand-text">
+        <h4 class="mb-0">PMS</h4>
+        <small>Project Management</small>
+      </div>
     </div>
 
-    <!-- Content -->
+    <nav class="sidebar-nav flex-grow-1">
+      <ul class="nav flex-column">
 
-    <div class="flex-grow-1">
+        <li class="nav-item">
+          <a routerLink="/dashboard"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="nav-link">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
 
-        <nav class="navbar navbar-light bg-light shadow-sm">
+        <li class="nav-item">
+          <a routerLink="/user"
+             routerLinkActive="active"
+             class="nav-link">
+            <i class="bi bi-people-fill"></i>
+            <span>Users</span>
+          </a>
+        </li>
 
-            <div class="container-fluid">
+        <li class="nav-item">
+          <a routerLink="/project"
+             routerLinkActive="active"
+             class="nav-link">
+            <i class="bi bi-folder-fill"></i>
+            <span>Projects</span>
+          </a>
+        </li>
 
-                <span class="navbar-brand mb-0 h4">
-                    Project Management System
-                </span>
+        <li class="nav-item">
+          <a routerLink="/task"
+             routerLinkActive="active"
+             class="nav-link">
+            <i class="bi bi-list-task"></i>
+            <span>Tasks</span>
+          </a>
+        </li>
 
-            </div>
+      </ul>
+    </nav>
 
-        </nav>
+    <div class="sidebar-footer">
+      <a routerLink="/" class="nav-link logout-link">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Logout</span>
+      </a>
+    </div>
 
-        <div class="container mt-4">
+  </aside>
 
-            <router-outlet></router-outlet>
+  <!-- Mobile Offcanvas Sidebar -->
+  <div class="offcanvas offcanvas-start sidebar-offcanvas" tabindex="-1" id="sidebarOffcanvas">
 
+    <div class="offcanvas-header sidebar-offcanvas-header">
+      <div class="sidebar-brand mb-0">
+        <div class="brand-icon">
+          <i class="bi bi-kanban-fill"></i>
+        </div>
+        <div class="brand-text">
+          <h4 class="mb-0">PMS</h4>
+          <small>Project Management</small>
+        </div>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body sidebar-offcanvas-body">
+      <ul class="nav flex-column">
+
+        <li class="nav-item">
+          <a routerLink="/dashboard"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="nav-link"
+             data-bs-dismiss="offcanvas">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/user"
+             routerLinkActive="active"
+             class="nav-link"
+             data-bs-dismiss="offcanvas">
+            <i class="bi bi-people-fill"></i>
+            <span>Users</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/project"
+             routerLinkActive="active"
+             class="nav-link"
+             data-bs-dismiss="offcanvas">
+            <i class="bi bi-folder-fill"></i>
+            <span>Projects</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/task"
+             routerLinkActive="active"
+             class="nav-link"
+             data-bs-dismiss="offcanvas">
+            <i class="bi bi-list-task"></i>
+            <span>Tasks</span>
+          </a>
+        </li>
+
+        <li class="nav-item mt-4">
+          <a routerLink="/"
+             class="nav-link logout-link"
+             data-bs-dismiss="offcanvas">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-area">
+
+    <nav class="top-navbar">
+      <div class="navbar-inner">
+
+        <div class="navbar-left">
+          <button class="btn btn-ghost btn-icon d-lg-none sidebar-toggle"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#sidebarOffcanvas">
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="navbar-title">
+            <h5 class="mb-0">Project Management System</h5>
+            <small class="text-muted d-none d-md-inline">Enterprise workspace</small>
+          </div>
         </div>
 
-    </div>
+        <div class="navbar-right">
+          <div class="navbar-avatar">
+            <i class="bi bi-person-circle"></i>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
 
 </div>

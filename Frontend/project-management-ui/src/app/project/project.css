@@ -1,0 +1,7 @@
+/* Project list page — inherits global data-table styles */
+
+@media (max-width: 768px) {
+  .text-truncate-cell {
+    max-width: 120px;
+  }
+}

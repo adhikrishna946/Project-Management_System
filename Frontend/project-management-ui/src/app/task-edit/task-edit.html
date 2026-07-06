@@ -1,167 +1,105 @@
-<div class="container mt-4">
+<div class="form-page">
 
-    <div class="card shadow">
+  <div class="form-card">
+    <div class="form-card-accent"></div>
 
-        <div class="card-header bg-warning text-dark">
+    <div class="form-card-header">
+      <h3>
+        <i class="bi bi-pencil-square me-2"></i>
+        Edit Task
+      </h3>
+      <p>Update task details and assignment</p>
+    </div>
 
-            <h3 class="mb-0">
-                <i class="bi bi-pencil-square"></i>
-                Edit Task
-            </h3>
+    <div class="form-card-body">
 
+      <div class="form-section-title">Assignment</div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Project</label>
+          <select class="form-select" [(ngModel)]="task.projectId">
+            <option
+              *ngFor="let project of projects"
+              [ngValue]="project.projectId">
+              {{ project.projectName }}
+            </option>
+          </select>
         </div>
-
-        <div class="card-body">
-
-            <div class="row">
-
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-    Project
-</label>
-
-<select
-    class="form-select"
-    [(ngModel)]="task.projectId">
-
-    <option
-        *ngFor="let project of projects"
-        [ngValue]="project.projectId">
-
-        {{ project.projectName }}
-
-    </option>
-
-</select>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-<label class="form-label">
-    Assigned User
-</label>
-
-<select
-    class="form-select"
-    [(ngModel)]="task.assignedUserId">
-
-    <option
-        *ngFor="let user of users"
-        [ngValue]="user.userId">
-
-        {{ user.fullName }}
-
-    </option>
-
-</select>
-
-                </div>
-
-            </div>
-
-            <div class="mb-3">
-
-                <label class="form-label">
-                    Task Name
-                </label>
-
-                <input
-                    type="text"
-                    class="form-control"
-                    [(ngModel)]="task.taskName">
-
-            </div>
-
-            <div class="mb-3">
-
-                <label class="form-label">
-                    Description
-                </label>
-
-                <textarea
-                    rows="4"
-                    class="form-control"
-                    [(ngModel)]="task.description">
-                </textarea>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-                        Priority
-                    </label>
-
-                    <select
-                        class="form-select"
-                        [(ngModel)]="task.priority">
-
-                        <option>High</option>
-                        <option>Medium</option>
-                        <option>Low</option>
-
-                    </select>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-                        Status
-                    </label>
-
-                    <select
-                        class="form-select"
-                        [(ngModel)]="task.status">
-
-                        <option>Not Started</option>
-                        <option>In Progress</option>
-                        <option>Completed</option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-6 mb-3">
-
-                <label class="form-label">
-                    Due Date
-                </label>
-
-                <input
-                    type="date"
-                    class="form-control"
-                    [(ngModel)]="task.dueDate">
-
-            </div>
-
-            <hr>
-
-            <button
-                class="btn btn-warning me-2"
-                (click)="updateTask()">
-
-                <i class="bi bi-pencil-square"></i>
-                Update
-
-            </button>
-
-            <button
-                class="btn btn-secondary"
-                routerLink="/task">
-
-                <i class="bi bi-arrow-left"></i>
-                Cancel
-
-            </button>
-
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Assigned User</label>
+          <select class="form-select" [(ngModel)]="task.assignedUserId">
+            <option
+              *ngFor="let user of users"
+              [ngValue]="user.userId">
+              {{ user.fullName }}
+            </option>
+          </select>
         </div>
+      </div>
+
+      <div class="form-section-title mt-2">Task Details</div>
+
+      <div class="mb-3">
+        <label class="form-label">Task Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="task.taskName">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea
+          rows="4"
+          class="form-control"
+          [(ngModel)]="task.description">
+        </textarea>
+      </div>
+
+      <div class="form-section-title mt-2">Priority & Timeline</div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Priority</label>
+          <select class="form-select" [(ngModel)]="task.priority">
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Status</label>
+          <select class="form-select" [(ngModel)]="task.status">
+            <option>Not Started</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Due Date</label>
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="task.dueDate">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" (click)="updateTask()">
+          <i class="bi bi-check-circle"></i>
+          Update
+        </button>
+        <button class="btn btn-ghost" routerLink="/task">
+          <i class="bi bi-arrow-left"></i>
+          Cancel
+        </button>
+      </div>
 
     </div>
+  </div>
 
 </div>
