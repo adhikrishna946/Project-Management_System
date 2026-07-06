@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2>Task Management</h2>
+        <p class="text-muted mb-0">
+            Total Tasks:
+            <strong>{{ tasks.length }}</strong>
+        </p>
+    </div>
+
+    <button
+        class="btn btn-primary"
+        routerLink="/task-add">
+
+        <i class="bi bi-plus-circle"></i>
+        Add Task
+
+    </button>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-striped table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Project</th>
+                        <th>Assigned User</th>
+                        <th>Task Name</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                        <th>Active</th>
+                        <th width="170">Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let task of tasks">
+
+                        <td>{{ task.taskId }}</td>
+
+                        <td>{{ task.projectId }}</td>
+
+                        <td>{{ task.assignedUserId }}</td>
+
+                        <td>{{ task.taskName }}</td>
+
+                        <td>
+
+                            <span
+                                class="badge"
+
+                                [class.bg-danger]="task.priority=='High'"
+
+                                [class.bg-warning]="task.priority=='Medium'"
+
+                                [class.bg-success]="task.priority=='Low'">
+
+                                {{ task.priority }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge"
+
+                                [class.bg-success]="task.status=='Completed'"
+
+                                [class.bg-warning]="task.status=='In Progress'"
+
+                                [class.bg-primary]="task.status=='Not Started'">
+
+                                {{ task.status }}
+
+                            </span>
+
+                        </td>
+
+                        <td>{{ task.dueDate | date:'dd-MM-yyyy' }}</td>
+
+                        <td>
+
+                            <span
+                                class="badge"
+
+                                [class.bg-success]="task.isActive"
+
+                                [class.bg-danger]="!task.isActive">
+
+                                {{ task.isActive ? 'Active' : 'Inactive' }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-warning btn-sm me-2"
+                                [routerLink]="['/task-edit', task.taskId]">
+
+                                <i class="bi bi-pencil-square"></i>
+                                Edit
+
+                            </button>
+
+                            <button
+                                class="btn btn-danger btn-sm"
+                                (click)="deleteTask(task.taskId)">
+
+                                <i class="bi bi-trash"></i>
+                                Delete
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

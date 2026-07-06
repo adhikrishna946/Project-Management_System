@@ -1,0 +1,146 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-task-edit',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule
+  ],
+  templateUrl: './task-edit.html',
+  styleUrls: ['./task-edit.css']
+})
+export class TaskEditComponent implements OnInit {
+
+  projects: any[] = [];
+  users: any[] = [];
+
+  task = {
+    taskId: 0,
+    projectId: 0,
+    assignedUserId: 0,
+    taskName: '',
+    description: '',
+    priority: '',
+    status: '',
+    dueDate: '',
+    createdBy: 'Admin'
+  };
+
+  constructor(
+  private http: HttpClient,
+  private route: ActivatedRoute,
+  private router: Router,
+
+) { }
+
+  ngOnInit(): void {
+
+    this.loadProjects();
+this.loadUsers();
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.http.get<any>(
+      'https://localhost:7296/api/Task/GetById/' + id
+    ).subscribe({
+
+      next: (response) => {
+
+        this.task = response;
+
+      },
+
+      error: (error) => {
+
+        console.log(error);
+
+        alert('Unable to load task');
+
+      }
+
+    });
+
+  }
+
+  loadProjects() {
+
+  this.http.get<any[]>(
+    'https://localhost:7296/api/Project/GetAll'
+  ).subscribe({
+
+    next: (response) => {
+
+      this.projects = response;
+
+    },
+
+    error: (error) => {
+
+      console.log(error);
+
+    }
+
+  });
+
+}
+
+
+
+  loadUsers() {
+
+  this.http.get<any[]>(
+    'https://localhost:7296/api/User/GetAll'
+  ).subscribe({
+
+    next: (response) => {
+
+      this.users = response;
+
+    },
+
+    error: (error) => {
+
+      console.log(error);
+
+    }
+
+  });
+
+}
+
+  updateTask() {
+
+    this.http.post(
+      'https://localhost:7296/api/Task/Save',
+      this.task,
+      { responseType: 'text' }
+    ).subscribe({
+
+      next: (response) => {
+
+        alert(response);
+
+        this.router.navigate(['/task']);
+
+      },
+
+      error: (error) => {
+
+        console.log(error);
+
+        alert(error.error);
+
+      }
+
+    });
+
+  }
+
+}

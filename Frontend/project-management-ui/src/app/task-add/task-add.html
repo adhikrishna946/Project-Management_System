@@ -1,0 +1,173 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3 class="mb-0">
+                <i class="bi bi-list-task"></i>
+                Add Task
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+    Project
+</label>
+
+<select
+    class="form-select"
+    [(ngModel)]="task.projectId">
+
+    <option [ngValue]="0">Select Project</option>
+
+    <option
+        *ngFor="let project of projects"
+        [ngValue]="project.projectId">
+
+        {{ project.projectName }}
+
+    </option>
+
+</select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+    Assigned User
+</label>
+
+<select
+    class="form-select"
+    [(ngModel)]="task.assignedUserId">
+
+    <option [ngValue]="0">Select User</option>
+
+    <option
+        *ngFor="let user of users"
+        [ngValue]="user.userId">
+
+        {{ user.fullName }}
+
+    </option>
+
+</select>
+
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Task Name
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="task.taskName">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Description
+                </label>
+
+                <textarea
+                    rows="4"
+                    class="form-control"
+                    [(ngModel)]="task.description">
+                </textarea>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Priority
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="task.priority">
+
+                        <option value="">Select Priority</option>
+                        <option>High</option>
+                        <option>Medium</option>
+                        <option>Low</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Status
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="task.status">
+
+                        <option value="">Select Status</option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Completed</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Due Date
+                </label>
+
+                <input
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="task.dueDate">
+
+            </div>
+
+            <hr>
+
+            <button
+                class="btn btn-success me-2"
+                (click)="saveTask()">
+
+                <i class="bi bi-check-circle"></i>
+                Save
+
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                routerLink="/task">
+
+                <i class="bi bi-arrow-left"></i>
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

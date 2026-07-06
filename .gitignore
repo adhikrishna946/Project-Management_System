@@ -1,0 +1,21 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+
+# Angular
+node_modules/
+dist/
+.angular/
+.cache/
+
+# Logs
+*.log
+
+# User files
+*.user
+*.suo
+
+# OS
+Thumbs.db
+.DS_Store
